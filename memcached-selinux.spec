@@ -52,12 +52,11 @@ install -m 0644 %{modulename}.pp.bz2 %{buildroot}%{_datadir}/selinux/packages
 %check
 
 %post
-%selinux_modules_install -s %{selinuxtype} -p 300 %{_datadir}/selinux/packages/%{modulename}.pp.bz2
-
+%selinux_modules_install -s %{selinuxtype} -p 200 %{_datadir}/selinux/packages/%{modulename}.pp.bz2
  
 %postun
 if [ $1 -eq 0 ]; then
-    %selinux_modules_uninstall -s %{selinuxtype} -p 300 %{modulename} 
+    %selinux_modules_uninstall -s %{selinuxtype} -p 200 %{modulename}
 fi  
 
 %posttrans 
