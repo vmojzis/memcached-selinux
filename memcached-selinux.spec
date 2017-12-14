@@ -5,7 +5,7 @@
  
 Name: memcached-selinux 
 Version: 1.0 
-Release: 1%{?dist} 
+Release: 2%{?dist} 
 License: GPLv2 
 #URL: # URL to git repository with policy source files 
 Summary: SELinux policy for memecached
@@ -69,6 +69,9 @@ fi
 %attr(0644,root,root) %{_datadir}/selinux/devel/include/%{moduletype}/%{modulename}.if  
 
 %changelog
+* Thu Dec 14 2017 Vit Mojzis <vmojzis@redhat.com> -  1.0 - 2
+- Allow memcached_t to mmap memcached_exec_t
+
 * Thu Jun 15 2017 vmojzis@redhat.com -  1.0 - 1 
 - Initial build
 
