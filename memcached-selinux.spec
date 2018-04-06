@@ -9,10 +9,10 @@ Release: 2%{?dist}
 License: GPLv2 
 #URL: # URL to git repository with policy source files 
 Summary: SELinux policy for memecached
-#cd memcached-selinux-%{version}
+#cd memcached-selinux-% {version}
 #make
 #cd ..
-#tar -czf memcached-selinux-%{version}.tar.gz memcached-selinux-%{version}/
+#tar -czf memcached-selinux-% {version}.tar.gz memcached-selinux-% {version}/
 Source0: %{name}-%{version}.tar.gz
 BuildArch: noarch 
 Requires: selinux-policy >= %{selinux_policyver} 

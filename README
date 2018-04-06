@@ -1,0 +1,9 @@
+SELinux policy package for memcached
+
+Policy files originate from selinux-policy repository
+git@github.com:fedora-selinux/selinux-policy.git
+commit f2a4661a115de8460b677aac4265446cdbd9ee64
+
+spec file and makefile based on
+https://fedoraproject.org/wiki/SELinux/IndependentPolicy
+
