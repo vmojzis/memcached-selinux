@@ -4,7 +4,7 @@
 
 Name: memcached-selinux 
 Version: 1.0
-Release: 2%{?dist}
+Release: 3%{?dist}
 License: GPLv2
 #URL: # URL to git repository with policy source files
 Summary: SELinux policies for memcached.
@@ -15,7 +15,7 @@ Summary: SELinux policies for memcached.
 Source0: %{name}-%{version}.tar.gz
 BuildArch: noarch
 BuildRequires: selinux-policy
-%selinux_requires
+%{?selinux_requires}
 
 %description
 SELinux security policy for memcached a high-performance, dstributed memory object caching system.
@@ -32,9 +32,9 @@ make
 %install
 # install policy modules
 install -d %{buildroot}%{_datadir}/selinux/packages
-install -d -p %{buildroot}%{_datadir}/selinux/devel/include/%{moduletype}
-install -p -m 644 %{modulename}.if %{buildroot}%{_datadir}/selinux/devel/include/%{moduletype}
 install -m 0644 %{modulename}.pp.bz2 %{buildroot}%{_datadir}/selinux/packages
+# Not installing memcached.if - interface file from selinux-policy-devel will be used
+# see. "Independant product policy" documentation for more details
 
 %check
 
@@ -52,10 +52,14 @@ fi
 %files 
 %defattr(-,root,root,0755) 
 %attr(0644,root,root) %{_datadir}/selinux/packages/%{modulename}.pp.bz2 
-%attr(0644,root,root) %{_datadir}/selinux/devel/include/%{moduletype}/%{modulename}.if
+%ghost %{_sharedstatedir}/selinux/%{selinuxtype}/active/modules/200/%{modulename}
 %license COPYING
 
 %changelog
+* Thu Jun 21 2018 Vit Mojzis <vmojzis@redhat.com> - 1.0 - 3
+- Handle requires using selinux_requires macro
+- Do not install the interface file to avoid conflict with selinux-policy-targeted
+
 * Thu Dec 14 2017 Vit Mojzis <vmojzis@redhat.com> -  1.0 - 2
 - Allow memcached_t to mmap memcached_exec_t
 
